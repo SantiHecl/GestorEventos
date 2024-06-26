@@ -137,10 +137,19 @@ namespace GestorEventos.WebUsuario.Controllers
         }
 
         [HttpPost("AprobarEvento")]
-        public IActionResult AprobarEvento(int idEvento, IFormCollection collection)
+        public async Task<IActionResult> AprobarEvento(int idEvento, IFormCollection collection)
         {
-            await this.eventoService.AprobarRechazarEvento(idEvento, true);
-            return View();
+            _ = this.eventoService.CambiarEstadoEvento(int.Parse(collection["item.IdEvento"][0]), 3);
+
+            return View("Index");
+        }
+
+        [HttpPost("RechazarEvento")]
+        public async Task<IActionResult> RechazarEvento(int idEvento, IFormCollection collection)
+        {
+            _ =  this.eventoService.CambiarEstadoEvento(int.Parse(collection["item.IdEvento"][0]), 4);
+
+            return View("Index");
         }
     }
 }

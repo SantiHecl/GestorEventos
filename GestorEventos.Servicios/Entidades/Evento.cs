@@ -34,18 +34,13 @@ namespace GestorEventos.Servicios.Entidades
         //		public Evento Evento { get; set; } 
 
         public int IdPersona { get; set; }
-
         public string Nombre { get; set; }
         public string Apellido { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
-
         public string Email { get; set; }
-
         public bool Borrado { get; set; }
-
        	public IEnumerable<EventosServicios> ListaDeServiciosContratados { get; set; }
-
 		public IEnumerable<Servicio>? ListaDeServiciosDisponibles { get; set; }
     }
 

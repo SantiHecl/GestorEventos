@@ -82,10 +82,12 @@
             <td>
                     @Html.ActionLink("Detalles", "Detalles", new { id=item.IdEvento }) |
                     <form asp-action="AprobarEvento">
-                        <input type="hidden" value="@item.IdEvento" id="idEvento" />
+                        <input type="hidden" asp-for="@item.IdEvento" />
                         <input type="submit" value="Aprobar"  />
-                        <!-- <input type="submit" value="Rechazar" /> -->
-
+                    </form>
+                    <form asp-action="RechazarEvento">
+                        <input type="hidden" asp-for="@item.IdEvento" />
+                        <input type="submit" value="Rechazar" />
                     </form>
             </td>
         </tr>

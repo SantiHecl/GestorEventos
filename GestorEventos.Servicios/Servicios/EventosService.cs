@@ -20,6 +20,7 @@ namespace GestorEventos.Servicios.Servicios
         Evento GetEventoPorId(int IdEvento);
         int PostNuevoEvento(Evento evento);
         bool PutNuevoEvento(int idEvento, Evento evento);
+        public bool CambiarEstadoEvento(int idEvento, int idEstado);
     }
 
     public class EventoService : IEventoService
