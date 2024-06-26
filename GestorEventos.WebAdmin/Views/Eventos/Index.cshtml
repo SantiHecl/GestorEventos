@@ -80,9 +80,13 @@
                 @Html.DisplayFor(modelItem => item.EstadoEvento)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                    @Html.ActionLink("Detalles", "Detalles", new { id=item.IdEvento }) |
+                    <form asp-action="AprobarEvento">
+                        <input type="hidden" value="@item.IdEvento" id="idEvento" />
+                        <input type="submit" value="Aprobar"  />
+                        <!-- <input type="submit" value="Rechazar" /> -->
+
+                    </form>
             </td>
         </tr>
 }

@@ -135,5 +135,12 @@ namespace GestorEventos.WebUsuario.Controllers
                 return View();
             }
         }
+
+        [HttpPost("AprobarEvento")]
+        public IActionResult AprobarEvento(int idEvento, IFormCollection collection)
+        {
+            await this.eventoService.AprobarRechazarEvento(idEvento, true);
+            return View();
+        }
     }
 }

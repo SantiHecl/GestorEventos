@@ -44,7 +44,7 @@ namespace GestorEventos.Api.Controllers
 		public IActionResult PostNuevoEvento([FromBody] Evento evento)
 		{
 			EventoService eventoService = new EventoService();
-			 
+
 
 
 			int resultado = eventoService.PostNuevoEvento(evento);
@@ -82,19 +82,19 @@ namespace GestorEventos.Api.Controllers
 			 */
 
 
-/*			bool resultado = eventoService.PostNuevoEvento(evento);
+		/*			bool resultado = eventoService.PostNuevoEvento(evento);
 
-			if (resultado)
-			{
+					if (resultado)
+					{
 
-				return Ok();
-			}
-			else
-			{
-				return UnprocessableEntity();
-			}
+						return Ok();
+					}
+					else
+					{
+						return UnprocessableEntity();
+					}
 
-		}*/
+				}*/
 
 
 		[HttpPut("{idEvento:int}/Modificar")]
@@ -112,12 +112,11 @@ namespace GestorEventos.Api.Controllers
 			else
 			{
 				return UnprocessableEntity(); //422 
-				//debio dar un InternalServer error (500) 
+											  //debio dar un InternalServer error (500) 
 
 			}
 
 		}
-
 
 		[HttpDelete("{idEvento:int}/Borrar")]
 		public IActionResult DeleteEvento(int idEvento)

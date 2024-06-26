@@ -110,7 +110,26 @@ namespace GestorEventos.Servicios.Servicios
 
         }
 
+        public bool CambiarEstadoEvento(int idEvento, int idEstado) 
+        {
+            try
+            {
+                using (IDbConnection db = new SqlConnection(_connectionString))
+                {
+                    string query = "UPDATE Eventos SET = " + idEstado.ToString() + " WHERE IdEvento = " + idEvento.ToString();
+                    db.Execute(query);
+                    //evento.IdEvento = db.QuerySingle<int>(query, evento);
+                    //db.QuerySingle(query, evento);
 
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+        }
         public bool PutNuevoEvento(int idEvento, Evento evento)
         {
 
