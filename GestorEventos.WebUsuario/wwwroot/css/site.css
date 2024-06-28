@@ -11,9 +11,18 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 
+#foto-logo {
+    align-self: center;
+}
 
 .logout {
-    font-size: 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #0d6efd;
+}
+
+.imagen-fondo {
+    background-size: cover;
 }
 
 .container {
@@ -629,8 +638,10 @@ progress {
     }
 
 .img-fluid {
-    max-width: 100%;
+    display: none;
+    max-width: 100%; /* Ajustar según necesidades */
     height: auto;
+    margin: 0 auto;
 }
 
 .img-thumbnail {

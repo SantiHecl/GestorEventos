@@ -39,7 +39,7 @@ namespace GestorEventos.Servicios.Servicios
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    string query = "INSERT INTO dbo.EventosServicios(IdEvento, IdServicio, Borrado)" +
+                    string query = "INSERT INTO EventosServicios (IdEvento, IdServicio, Borrado)" +
                                     "VALUES(   @IdEvento,  @IdServicio,   0)";
                     db.Execute(query, relacionEventoServicio);
 
@@ -57,7 +57,7 @@ namespace GestorEventos.Servicios.Servicios
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                List<EventosServicios> eventos = db.Query<EventosServicios>("select * from eventosServicios WHERE IdEvento =" + IdEvento.ToString()).ToList();
+                List<EventosServicios> eventos = db.Query<EventosServicios>("select * from EventosServicios WHERE IdEvento =" + IdEvento.ToString()).ToList();
 
                 return eventos;
 

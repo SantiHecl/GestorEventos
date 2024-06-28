@@ -82,7 +82,7 @@ namespace GestorEventos.WebUsuario.Controllers
                 eventoNuevo.Visible = true;
 
                 //linea que no funciona. Puse IdUsuario para que funcione
-                eventoNuevo.IdUsuario = 2;// int.Parse(HttpContext.User.Claims.First(x => x.Type == "usuarioSolterout").Value); // HttpContext.User.Identity.Id;
+                eventoNuevo.IdUsuario = int.Parse(HttpContext.User.Claims.First(x => x.Type == "usuarioSolterout").Value); // HttpContext.User.Identity.Id;
 
                 eventoNuevo.FechaEvento = DateTime.Parse(collection["FechaEvento"].ToString());
                 eventoNuevo.IdTipoEvento = int.Parse(collection["IdTipoEvento"].ToString());

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.Extensions.Options;
+using System.Security.Claims;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -53,13 +54,22 @@ builder.Services.AddAuthentication(opciones =>
             idUsuario = usuario.IdUsuario;
         }
         //ctx.Identity.
-         //usuarioServicio.GetUsuarioPorGoogleSubject(ctx.Identity.Claims)
+        //usuarioServicio.GetUsuarioPorGoogleSubject(ctx.Identity.Claims)
         // Agregar reclamaciones personalizadas aquí
-        ctx.Identity.AddClaim(new System.Security.Claims.Claim("usuarioSolterout", idUsuario.ToString()));
+        //ctx.Identity.AddClaim(new System.Security.Claims.Claim("usuarioSolterout", idUsuario.ToString()));
 
-        var accessToken = ctx.AccessToken;
-        ctx.Identity.AddClaim(new System.Security.Claims.Claim("accessToken", accessToken));
-        
+        //var accessToken = ctx.AccessToken;
+        //ctx.Identity.AddClaim(new System.Security.Claims.Claim("accessToken", accessToken));
+
+        ctx.Identity.AddClaim(new Claim("usuarioSolterout", idUsuario.ToString()));
+        ctx.Identity.AddClaim(new Claim("accessToken", ctx.AccessToken));
+
+        // Actualizar la cookie de autenticación
+        var claimsIdentity = new ClaimsIdentity(ctx.Identity.Claims, CookieAuthenticationDefaults.AuthenticationScheme);
+        var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
+
+        ctx.HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, claimsPrincipal);
+
         return Task.CompletedTask;
     };
 });
