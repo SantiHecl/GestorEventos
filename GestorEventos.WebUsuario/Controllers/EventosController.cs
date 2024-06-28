@@ -26,8 +26,7 @@ namespace GestorEventos.WebUsuario.Controllers
         public ActionResult Index()
         {
 
-            int idUsuario = int.Parse(
-                    HttpContext.User.Claims.First(x => x.Type == "usuarioSolterout").Value);
+            int idUsuario = int.Parse(HttpContext.User.Claims.First(x => x.Type == "usuarioSolterout").Value);
 
             var eventos = this.eventoService.GetMisEventos(idUsuario);
 
@@ -38,8 +37,7 @@ namespace GestorEventos.WebUsuario.Controllers
         public ActionResult Details(int id)
         {
 
-            int idUsuario = int.Parse(
-                    HttpContext.User.Claims.First(x => x.Type == "usuarioSolterout").Value);
+            int idUsuario = int.Parse(HttpContext.User.Claims.First(x => x.Type == "usuarioSolterout").Value);
 
             var evento = this.eventoService.GetMisEventos(idUsuario).First(x=> x.IdEvento == id);
 
@@ -116,11 +114,11 @@ namespace GestorEventos.WebUsuario.Controllers
 
                 eventoNuevo.CantidadPersonas = int.Parse(collection["CantidadPersonas"].ToString());
                 eventoNuevo.Visible = true;
-                eventoNuevo.IdUsuario = int.Parse(HttpContext.User.Claims.First(x=> x.Type=="usuarioSolterout").Value); // HttpContext.User.Identity.Id;
+                eventoNuevo.IdUsuario = 2; //int.Parse(HttpContext.User.Claims.First(x=> x.Type=="usuarioSolterout").Value); // HttpContext.User.Identity.Id;
                 eventoNuevo.FechaEvento = DateTime.Parse(collection["FechaEvento"].ToString());
                 eventoNuevo.IdTipoEvento = int.Parse(collection["IdTipoEvento"].ToString());
                 eventoNuevo.NombreEvento = collection["NombreEvento"].ToString();
-                eventoNuevo.IdEstadoEvento = 2; //Pendiente de Aprobacion
+                eventoNuevo.IdEstadoEvento = 1; //Pendiente de Aprobacion
 
 
                 int idEventoNuevo=  this.eventoService.PostNuevoEvento(eventoNuevo);

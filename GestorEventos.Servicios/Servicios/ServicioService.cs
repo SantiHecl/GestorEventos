@@ -29,7 +29,8 @@ namespace GestorEventos.Servicios.Servicios
         public ServicioService()
         {
 
-            _connectionString = "Server=localhost\\SQLEXPRESS; Database=prueba; Trusted_Connection=True;";
+            _connectionString = "Server=localhost\\SQLEXPRESS;Database=prueba;Trusted_Connection=True;";
+
 
 
         }

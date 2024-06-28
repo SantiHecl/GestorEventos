@@ -1,3 +1,4 @@
+using GestorEventos.Servicios.Entidades;
 using GestorEventos.Servicios.Servicios;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -8,7 +9,6 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<IEventoService, EventoService>();
 builder.Services.AddScoped<IPersonaService, PersonaService>();
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

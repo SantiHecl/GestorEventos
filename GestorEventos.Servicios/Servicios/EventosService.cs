@@ -33,8 +33,7 @@ namespace GestorEventos.Servicios.Servicios
         {
 
             //Connection string 
-            _connectionString = "Server=localhost\\SQLEXPRESS; Database=prueba; Trusted_Connection=True;";
-             
+            _connectionString = "Server=localhost\\SQLEXPRESS;Database=prueba;Trusted_Connection=True;";
 
         }
 
@@ -94,7 +93,7 @@ namespace GestorEventos.Servicios.Servicios
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    string query = "insert into Eventos (NombreEvento, FechaEvento, CantidadPersonas, IdPersonaAgasajada, IdTipoEvento, Visible, Borrado, IdUsuario, IdEstadoEvento) values ( @NombreEvento, @FechaEvento, @CantidadPersonas, @IdPersonaAgasajada, @IdTipoEvento, @Visible, @Borrado, @IdUsuario, @IdEstadoEvento);" +
+                    string query = "insert into Eventos (NombreEvento, FechaEvento, CantidadPersonas, IdPersonaAgasajada, IdTipoEvento, IdUsuario, IdEstadoEvento, Visible, Borrado) values ( @NombreEvento, @FechaEvento, @CantidadPersonas, @IdPersonaAgasajada, @IdTipoEvento, @IdUsuario, @IdEstadoEvento, @Visible, @Borrado);" +
                     "select  CAST(SCOPE_IDENTITY() AS INT) ";
                     evento.IdEvento = db.QuerySingle<int>(query, evento);
                     //db.QuerySingle(query, evento);
@@ -111,13 +110,42 @@ namespace GestorEventos.Servicios.Servicios
 
         }
 
+        /*public int PostNuevoEvento(Evento evento)
+        {
+            try
+            {
+                using (IDbConnection db = new SqlConnection(_connectionString))
+                {
+                    string query = @"
+                insert into Eventos (NombreEvento, FechaEvento, CantidadPersonas, IdPersonaAgasajada, IdTipoEvento, Visible, Borrado, IdUsuario, IdEstadoEvento) 
+                values (@NombreEvento, @FechaEvento, @CantidadPersonas, @IdPersonaAgasajada, @IdTipoEvento, @Visible, @Borrado, @IdUsuario, @IdEstadoEvento);
+                select CAST(SCOPE_IDENTITY() AS INT);";
+
+                    evento.IdEvento = db.QuerySingle<int>(query, evento);
+
+                    return evento.IdEvento;
+                }
+            }
+            catch (Exception ex)
+            {
+                // Registro del error para diagnóstico
+                Console.WriteLine($"Error: {ex.Message}");
+                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+
+                // Puedes utilizar un mecanismo de registro más robusto, como log4net o NLog, en lugar de Console.WriteLine
+
+                return 0;
+            }
+        }*/
+
+
         public bool CambiarEstadoEvento(int idEvento, int idEstado) 
         {
             try
             {
                 using (IDbConnection db = new SqlConnection(_connectionString))
                 {
-                    string query = "UPDATE Eventos SET = " + idEstado.ToString() + " WHERE IdEvento = " + idEvento.ToString();
+                    string query = "UPDATE Eventos SET IdEstadoEvento = " + idEstado.ToString() + " WHERE IdEvento = " + idEvento.ToString();
                     db.Execute(query);
                     //evento.IdEvento = db.QuerySingle<int>(query, evento);
                     //db.QuerySingle(query, evento);

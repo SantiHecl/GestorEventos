@@ -28,7 +28,8 @@ namespace GestorEventos.Servicios.Servicios
         {
 
             //Connection string 
-            _connectionString = "Server=localhost\\SQLEXPRESS; Database=prueba; Trusted_Connection=True;";
+            _connectionString = "Server=localhost\\SQLEXPRESS;Database=prueba;Trusted_Connection=True;";
+
 
 
 
@@ -56,8 +57,6 @@ namespace GestorEventos.Servicios.Servicios
 
                 return usuarios;
             }
-
-
         }
 
         public Usuario? GetUsuarioPorGoogleSubject(string googleSubject)
@@ -74,9 +73,8 @@ namespace GestorEventos.Servicios.Servicios
         {
             using (IDbConnection db = new SqlConnection(_connectionString))
             {
-                string query = "INSERT INTO Usuarios (GoogleIdentificador, Nombre, Apellido, NombreCompleto,  Email) VALUES ( @GoogleIdentificador, @Nombre, @Apellido, @NombreCompleto, @Email); SELECT CAST(SCOPE_IDENTITY() AS int)";
+                string query = "INSERT INTO Usuarios (GoogleIdentificador, NombreCompleto, Nombre, Apellido, Email) VALUES ( @GoogleIdentificador, @NombreCompleto, @Nombre, @Apellido, @Email); SELECT CAST(SCOPE_IDENTITY() AS int)";
                 int idUsuario = (int)db.ExecuteScalar(query, usuario);
-
 
                 return idUsuario;
             }

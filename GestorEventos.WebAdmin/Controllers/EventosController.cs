@@ -78,14 +78,16 @@ namespace GestorEventos.WebUsuario.Controllers
                 
                 Evento eventoNuevo = new Evento();
                 eventoNuevo.IdPersonaAgasajada = IdPersonaAgasajada;
-
                 eventoNuevo.CantidadPersonas = int.Parse(collection["CantidadPersonas"].ToString());
                 eventoNuevo.Visible = true;
-                eventoNuevo.IdUsuario = int.Parse(HttpContext.User.Claims.First(x=> x.Type=="usuarioSolterout").Value); // HttpContext.User.Identity.Id;
+
+                //linea que no funciona. Puse IdUsuario para que funcione
+                eventoNuevo.IdUsuario = 2;// int.Parse(HttpContext.User.Claims.First(x => x.Type == "usuarioSolterout").Value); // HttpContext.User.Identity.Id;
+
                 eventoNuevo.FechaEvento = DateTime.Parse(collection["FechaEvento"].ToString());
                 eventoNuevo.IdTipoEvento = int.Parse(collection["IdTipoEvento"].ToString());
                 eventoNuevo.NombreEvento = collection["NombreEvento"].ToString();
-                eventoNuevo.IdEstadoEvento = 2; //Pendiente de Aprobacion
+                eventoNuevo.IdEstadoEvento = 1; //Pendiente de Aprobacion
 
 
                 this.eventoService.PostNuevoEvento(eventoNuevo);
@@ -139,17 +141,17 @@ namespace GestorEventos.WebUsuario.Controllers
         [HttpPost("AprobarEvento")]
         public async Task<IActionResult> AprobarEvento(int idEvento, IFormCollection collection)
         {
-            _ = this.eventoService.CambiarEstadoEvento(int.Parse(collection["item.IdEvento"][0]), 3);
+            _ = this.eventoService.CambiarEstadoEvento(int.Parse(collection["item.IdEvento"][0]), 2);
 
-            return View("Index");
+            return RedirectToAction(nameof(Index));
         }
 
         [HttpPost("RechazarEvento")]
         public async Task<IActionResult> RechazarEvento(int idEvento, IFormCollection collection)
         {
-            _ =  this.eventoService.CambiarEstadoEvento(int.Parse(collection["item.IdEvento"][0]), 4);
+            _ =  this.eventoService.CambiarEstadoEvento(int.Parse(collection["item.IdEvento"][0]), 3);
 
-            return View("Index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

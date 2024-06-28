@@ -28,14 +28,14 @@ namespace GestorEventos.WebUsuario.Controllers
         public async Task<IActionResult> GoogleResponse()
         {
           var result = await HttpContext.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-             var accessToken = result.Properties.GetTokenValue("access_token");    
-            var claims = result.Principal.Identities.FirstOrDefault().Claims.Select(x => new
-            {
+          var accessToken = result.Properties.GetTokenValue("access_token");    
+          var claims = result.Principal.Identities.FirstOrDefault().Claims.Select(x => new
+          {
                 x.Issuer,
                 x.OriginalIssuer,
                 x.Type,
                 x.Value,
-            });
+          });
             /* */
 
             return RedirectToAction("Index", "Home", new { area = "" });

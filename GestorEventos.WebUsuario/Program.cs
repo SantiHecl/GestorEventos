@@ -25,8 +25,8 @@ builder.Services.AddAuthentication(opciones =>
 .AddCookie()
 .AddGoogle(GoogleDefaults.AuthenticationScheme, opciones =>
 {
-    opciones.ClientId = builder.Configuration.GetSection("GooglaKeys:ClientId").Value + ".apps.googleusercontent.com";
-    opciones.ClientSecret = builder.Configuration.GetSection("GooglaKeys:ClientPriv").Value;
+    opciones.ClientId = builder.Configuration.GetSection("GoogleKeys:ClientId").Value + ".apps.googleusercontent.com";
+    opciones.ClientSecret = builder.Configuration.GetSection("GoogleKeys:ClientPriv").Value;
  
     opciones.Events.OnCreatingTicket = ctx =>
     {
@@ -39,22 +39,21 @@ builder.Services.AddAuthentication(opciones =>
         if (usuario == null)
         {
             Usuario usuarioNuevo = new Usuario();
-            usuarioNuevo.Apellido = ctx.Identity.Claims.First(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname").Value.ToString();
-            usuarioNuevo.Nombre = ctx.Identity.Claims.First(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname").Value.ToString();
-            usuarioNuevo.NombreCompleto = ctx.Identity.Claims.First(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").Value.ToString();
             usuarioNuevo.GoogleIdentificador = googleNameIdentifier;
-            usuarioNuevo.Borrado = false;
+            usuarioNuevo.NombreCompleto = ctx.Identity.Claims.First(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name").Value.ToString();
+            usuarioNuevo.Nombre = ctx.Identity.Claims.First(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/givenname").Value.ToString();
+            usuarioNuevo.Apellido = ctx.Identity.Claims.First(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/surname").Value.ToString();            
             usuarioNuevo.Email = ctx.Identity.Claims.First(x => x.Type == "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress").Value.ToString();
+            usuarioNuevo.Borrado = false;
 
             idUsuario = usuarioServicio.AgregarNuevoUsuario(usuarioNuevo);
-
         }
         else
         {
             idUsuario = usuario.IdUsuario;
         }
         //ctx.Identity.
-         //   usuarioServicio.GetUsuarioPorGoogleSubject(ctx.Identity.Claims)
+         //usuarioServicio.GetUsuarioPorGoogleSubject(ctx.Identity.Claims)
         // Agregar reclamaciones personalizadas aquí
         ctx.Identity.AddClaim(new System.Security.Claims.Claim("usuarioSolterout", idUsuario.ToString()));
 
