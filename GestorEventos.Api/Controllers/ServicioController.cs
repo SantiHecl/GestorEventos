@@ -47,8 +47,5 @@ namespace GestorEventos.Api.Controllers
 
 			return Ok();
 		}
-
-
-
 	}
 }

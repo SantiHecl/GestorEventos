@@ -40,7 +40,7 @@ namespace GestorEventos.Servicios.Entidades
         public string Telefono { get; set; }
         public string Email { get; set; }
         public bool Borrado { get; set; }
-       	public IEnumerable<EventosServicios> ListaDeServiciosContratados { get; set; }
+      	public IEnumerable<EventosServicios> ListaDeServiciosContratados { get; set; }
 		public IEnumerable<Servicio>? ListaDeServiciosDisponibles { get; set; }
     }
 
