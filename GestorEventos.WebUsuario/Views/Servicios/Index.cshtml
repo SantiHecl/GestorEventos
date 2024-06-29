@@ -1,0 +1,47 @@
+﻿@model IEnumerable<GestorEventos.Servicios.Entidades.Servicio>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-white>Servicios</h1>
+
+<p>
+    <a asp-action="Create">Crear Nuevo</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th style="color: white;">
+                @Html.DisplayNameFor(model => model.IdServicio)
+            </th>
+            <th style="color: white;">
+                @Html.DisplayNameFor(model => model.Descripcion)
+            </th>
+            <th style="color: white;">
+                @Html.DisplayNameFor(model => model.PrecioServicio)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td style="color: white;">
+                    @Html.DisplayFor(modelItem => item.IdServicio)
+                </td>
+                <td style="color: white;">
+                    @Html.DisplayFor(modelItem => item.Descripcion)
+                </td>
+                <td style="color: white;">
+                    @Html.DisplayFor(modelItem => item.PrecioServicio)
+                </td>
+                <td>
+                    @Html.ActionLink("Details", "Details", new { id = item.IdServicio }) |
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

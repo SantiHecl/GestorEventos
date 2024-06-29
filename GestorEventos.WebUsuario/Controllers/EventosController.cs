@@ -69,11 +69,7 @@ namespace GestorEventos.WebUsuario.Controllers
             return View(evento);
         }
 
-        // GET: EventosController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        } 
+        
 
             // POST: EventosController/Create
         [HttpPost]
@@ -175,6 +171,10 @@ namespace GestorEventos.WebUsuario.Controllers
         {
             try
             {
+                EventoService eventoService = new EventoService();
+
+                eventoService.DeleteEvento(id);
+
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -182,5 +182,14 @@ namespace GestorEventos.WebUsuario.Controllers
                 return View();
             }
         }
+
+        // GET: EventosController/Delete/5
+        public ActionResult Delete(int id)
+        {
+            EventoService eventoService = new EventoService();
+
+            Evento evento = eventoService.GetEventoPorId(id);
+            return View(evento);
+        } 
     }
 }

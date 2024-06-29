@@ -197,40 +197,12 @@ namespace GestorEventos.Servicios.Servicios
 
         public bool DeleteEvento(int idEvento)
         {
-
-            /*
-			 2xx = Respuestas OK 
-			 3xx = Error de datos  <<- No lo usé 
-			 4xx = Errores de la aplicación pero son resultados de una mala petición 
-			 5xx = Errores del servidor. 
-			 */
-            try
+            using (IDbConnection db = new SqlConnection(_connectionString))
             {
-          /*      var eventoAEliminar = this.Eventos.Where(x => x.IdEvento == idEvento).First();
-
-                var listaEventos = this.Eventos.ToList();
-
-                /*Borrado Fisico*/
-              /*  listaEventos.Remove(eventoAEliminar);
-
-
-                /*Borrado Logico*/
-                /*eventoAEliminar.Visible = false;
-                */
-
-
-                //	this.Eventos.ToList().Remove(eventoAEliminar);
-
-                //this.Eventos.ToList().Remove(x => x.idEvento == idEvento);
+                string query = "UPDATE Eventos SET Borrado = 1 where IdEvento = " + idEvento.ToString();
+                db.Execute(query);
 
                 return true;
-            }
-
-            catch (Exception ex)
-            {
-
-                return false;
-
             }
         }
         /*

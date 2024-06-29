@@ -1,0 +1,36 @@
+﻿@model GestorEventos.Servicios.Entidades.Servicio
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-white">Detalles</h1>
+
+<div>
+    <h4 class="text-white>Servicio</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2" style="color: white;">
+            <span class="text-white">@Html.DisplayNameFor(model => model.IdServicio)</span>
+        </dt>
+        <dd class="col-sm-10">
+            <span class="text-white">@Html.DisplayFor(model => model.IdServicio)</span>
+        </dd>
+        <dt class="col-sm-2" style="color: white;">
+            <span class="text-white">@Html.DisplayNameFor(model => model.Descripcion)</span>
+        </dt>
+        <dd class="col-sm-10">
+            <span class="text-white">@Html.DisplayFor(model => model.Descripcion)</span>
+        </dd>
+        <dt class="col-sm-2" style="color: white;">
+            <span class="text-white">@Html.DisplayNameFor(model => model.PrecioServicio)</span>
+        </dt>
+        <dd class="col-sm-10">
+            <span class="text-white">@Html.DisplayFor(model => model.PrecioServicio)</span>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Index">Volver a la Lista</a>
+</div>
