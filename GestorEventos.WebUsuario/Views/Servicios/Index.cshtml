@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-white>Servicios</h1>
+<h1 class="text-white">Servicios</h1>
 
 <p>
     <a asp-action="Create">Crear Nuevo</a>
@@ -39,7 +39,8 @@
                     @Html.DisplayFor(modelItem => item.PrecioServicio)
                 </td>
                 <td>
-                    @Html.ActionLink("Details", "Details", new { id = item.IdServicio }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.IdServicio }) |
+                    @Html.ActionLink("Borrar", "Delete", new { id = item.IdServicio }) |
                 </td>
             </tr>
         }

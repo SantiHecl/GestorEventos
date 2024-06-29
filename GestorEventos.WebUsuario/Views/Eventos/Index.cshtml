@@ -8,7 +8,7 @@
 <h1 class="text-white">Eventos</h1>
 
 <p>
-    <a asp-action="Create" class="text-white">Crear Nuevo</a>
+    <a asp-action="Create">Crear Nuevo</a>
 </p>
 <table class="table">
     <thead>
@@ -71,7 +71,7 @@
                     <span class="text-white">@Html.DisplayFor(modelItem => item.IdUsuario)</span>
             </td>
             <td>
-                    <span class="text-white">@Html.DisplayFor(modelItem => item.Visible)</span>
+                    <span  class="text-white">@Html.DisplayFor(modelItem => item.Visible)</span>
             </td>
             <td>
                     <span class="text-white">@Html.DisplayFor(modelItem => item.Borrado)</span>
@@ -80,8 +80,8 @@
                     <span class="text-white">@Html.DisplayFor(modelItem => item.EstadoEvento)</span>
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new {  id=item.IdEvento  }) |
-                @Html.ActionLink("Delete", "Delete", new { id=item.IdEvento })
+                @Html.ActionLink("Detalles", "Details", new {  id=item.IdEvento  }) |
+                @Html.ActionLink("Borrar", "Delete", new { id=item.IdEvento })
             </td>
         </tr>
 }
