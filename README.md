@@ -10,7 +10,7 @@ Hecl Santiago
 
 Instrucciones para iniciar el sistema:
 Se deberá clonar el repositorio de Github
-Crear una base de datos local en SQL Server llamada “ ”
+Crear una base de datos local en SQL Server llamada “prueba”
 Ejecutar el script para la creación de las tablas
 Ejecutar la aplicación
 
